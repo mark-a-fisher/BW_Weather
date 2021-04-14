@@ -38,7 +38,7 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
     // Setup request queue and lists
     private RequestQueue requestQueue;
     public List<Weather> weatherList = new ArrayList<>();
-    public List<WeatherAverage> weatherAverageList = new ArrayList<>();
+    public List<Weather> weatherAverageList = new ArrayList<>();
 
     // Debugg tag
     private static final String TAG = "Debug";
@@ -127,13 +127,13 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
                                 String snow_amount = snow.getString("3h");
                                 float snow_amount_float = Float.parseFloat(snow_amount);
                                 // Add new Weather data to array
-                                weatherList.add(new Weather(formatted_date_string, date, time, weather_type, (int) average_temp, snow_amount_float));
+                                weatherList.add(new Weather(date, time, weather_type, (int) average_temp, snow_amount_float));
 
                             } // If no snow
                             catch (Exception e) {
                                 float snow_amount = 0;
                                 // Add new Weather data to array
-                                weatherList.add(new Weather(formatted_date_string, date, time, weather_type, (int) average_temp, snow_amount));
+                                weatherList.add(new Weather(date, time, weather_type, (int) average_temp, snow_amount));
                             }
                         }
                         catch (JSONException e) { Log.e("mark_debug", "Could not parse JSON list"); }
@@ -162,6 +162,7 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
         for (int i = 0; i < weatherList.size(); i++) {
             Weather current_weather = weatherList.get(i);
             String date_to_check = current_weather.getDate();
+            String current_time = current_weather.getTime();
 
             // For the first iteration, set the current_date and add first entry to temperature_list and snowfall_list
             if (current_date.equals("")) {
@@ -205,7 +206,7 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
                 }
                 float average_temp = total_temp / temperature_list.size();
 
-                // Sort the weather_type_list, then find the most common string
+                // Sort the weather_type_list, then find the most common type of weather
                 Collections.sort(weather_type_list);
                 int count = 0;
                 int highest_count = 0;
@@ -237,7 +238,7 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
                 }
 
                 // Add date, average_temp and total_snowfall to AverageWeatherList
-                weatherAverageList.add(new WeatherAverage(current_date, highest_type, (int) average_temp, total_snowfall));
+                weatherAverageList.add(new Weather(current_date, current_time, highest_type, (int) average_temp, total_snowfall));
 
                 // Clear temperature_list and snowfall_list ready for new date
                 temperature_list.clear();
@@ -254,16 +255,16 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
 
         // Allocate each item in weatherAverageList to a variable
         // I know there can only be a max of 5 entries, as this is the max given by the API
-        WeatherAverage item1 = weatherAverageList.get(0);
-        WeatherAverage item2 = weatherAverageList.get(1);
-        WeatherAverage item3 = weatherAverageList.get(2);
-        WeatherAverage item4 = weatherAverageList.get(3);
+        Weather item1 = weatherAverageList.get(0);
+        Weather item2 = weatherAverageList.get(1);
+        Weather item3 = weatherAverageList.get(2);
+        Weather item4 = weatherAverageList.get(3);
 
         // Setup text for textviews
-        String item1_content = "Date: " + item1.getDate() + "\nWeather: " + item1.getWeather_type() + "\nAverage Temperature: " + item1.getAverage_temp() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item1.getTotal_snowfall()) + "cm";
-        String item2_content = "Date: " + item2.getDate() + "\nWeather: " + item2.getWeather_type() + "\nAverage Temperature: " + item2.getAverage_temp() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item2.getTotal_snowfall()) + "cm";
-        String item3_content = "Date: " + item3.getDate() + "\nWeather: " + item3.getWeather_type() + "\nAverage Temperature: " + item3.getAverage_temp() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item3.getTotal_snowfall()) + "cm";
-        String item4_content = "Date: " + item4.getDate() + "\nWeather: " + item4.getWeather_type() + "\nAverage Temperature: " + item4.getAverage_temp() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item4.getTotal_snowfall()) + "cm";
+        String item1_content = "Date: " + item1.getDate() + "\nWeather: " + item1.getWeather_type() + "\nAverage Temperature: " + item1.getAverage_temperature() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item1.getSnow_amount()) + "cm";
+        String item2_content = "Date: " + item2.getDate() + "\nWeather: " + item2.getWeather_type() + "\nAverage Temperature: " + item2.getAverage_temperature() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item2.getSnow_amount()) + "cm";
+        String item3_content = "Date: " + item3.getDate() + "\nWeather: " + item3.getWeather_type() + "\nAverage Temperature: " + item3.getAverage_temperature() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item3.getSnow_amount()) + "cm";
+        String item4_content = "Date: " + item4.getDate() + "\nWeather: " + item4.getWeather_type() + "\nAverage Temperature: " + item4.getAverage_temperature() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item4.getSnow_amount()) + "cm";
 
         // Add text to textviews
         textview_1.setText(item1_content);
@@ -273,8 +274,8 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
 
         // Item 5 in try block, sometimes there is only 4 days worth of data
         try {
-            WeatherAverage item5 = weatherAverageList.get(4);
-            String item5_content = "Date: " + item5.getDate() + "\nWeather: " + item5.getWeather_type() + "\nAverage Temperature: " + item5.getAverage_temp() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item5.getTotal_snowfall()) + "cm";
+            Weather item5 = weatherAverageList.get(4);
+            String item5_content = "Date: " + item5.getDate() + "\nWeather: " + item5.getWeather_type() + "\nAverage Temperature: " + item5.getAverage_temperature() + "\u2103" + "\nTotal Snowfall: " + String.format("%.01f", item5.getSnow_amount()) + "cm";
             textview_5.setText(item5_content);
         } catch (Exception e) {
         }

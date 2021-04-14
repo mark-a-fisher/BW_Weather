@@ -70,6 +70,7 @@ public class TodayWeather extends AppCompatActivity {
 
         Log.d(TAG, "Entered LoadWeather ");
 
+        // API request settings
         String base_url = "https://api.openweathermap.org/data/2.5/forecast?";
         // Lat & Lon of BigWhite
         String lat = "49.72";
@@ -105,7 +106,7 @@ public class TodayWeather extends AppCompatActivity {
 
                             // Date Attributes
                             String date = formatted_date_string.substring(0, 11);
-                            String time = formatted_date_string.substring(14);
+                            String time = formatted_date_string.substring(13);
 
                             // Temperature Attributes
                             JSONObject main = item.getJSONObject("main");
@@ -132,13 +133,13 @@ public class TodayWeather extends AppCompatActivity {
                                 String snow_amount = snow.getString("3h");
                                 float snow_amount_float = Float.parseFloat(snow_amount);
                                 // Add new Weather data to array
-                                weatherListToday.add(new Weather(formatted_date_string, date, time, weather_type, (int) average_temp, snow_amount_float));
+                                weatherListToday.add(new Weather(date, time, weather_type, (int) average_temp, snow_amount_float));
 
                             } // If no snow
                             catch (Exception e) {
                                 float snow_amount = 0;
                                 // Add new Weather data to array
-                                weatherListToday.add(new Weather(formatted_date_string, date, time, weather_type, (int) average_temp, snow_amount));
+                                weatherListToday.add(new Weather(date, time, weather_type, (int) average_temp, snow_amount));
                             }
                         }
                         catch (JSONException e) { Log.e("mark_debug", "Could not parse JSON list"); }
@@ -156,12 +157,6 @@ public class TodayWeather extends AppCompatActivity {
     }
 
     public void populate_today_weather (){
-
-        //TODO Up to 8 potential weather slots (every 3 hours)
-        //TODO Needs to show the time, weathertype, average temp & snowfall amount
-        //TODO The info is stored in 'weatherList'. Traverse this list, check if the "date" is same as current date.
-        //TODO If same date, display the data
-        //TODO If NOT same date, ignore
 
         //First entry in weatherList is from current date
         //Use this date to compare date with other items in list
