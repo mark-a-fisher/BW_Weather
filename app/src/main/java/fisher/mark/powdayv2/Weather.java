@@ -1,15 +1,14 @@
 package fisher.mark.powdayv2;
 
 public class Weather {
-    private String date_time;
-    private String date;
-    private String time;
-    private String weather_type;
-    private int average_temperature;
-    private float snow_amount;
+    private final String date;
+    private final String time;
+    private final String weather_type;
+    private final int average_temperature;
+    private final float snow_amount;
 
-    Weather(String date_time, String date, String time, String weather_type, int average_temperature, float snow_amount) {
-        this.date_time = date_time;
+    // Setter method
+    Weather(String date, String time, String weather_type, int average_temperature, float snow_amount) {
         this.date = date;
         this.time = time;
         this.weather_type = weather_type;
@@ -17,14 +16,11 @@ public class Weather {
         this.snow_amount = snow_amount;
     }
 
-    public String getDate_time() {
-        return date_time;
-    }
+    // Getter methods
     public String getDate() { return date; }
     public String getTime() { return time; }
     public String getWeather_type() { return weather_type; }
     public int getAverage_temperature() { return average_temperature; }
-    public float getSnow_amount() {
-        return snow_amount;
+    public float getSnow_amount() { return snow_amount;
     }
 }
