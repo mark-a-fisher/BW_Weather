@@ -1,0 +1,19 @@
+## Example of JSON recieved from API.
+## Used as a reference.
+
+{"cod":"200","message":0,"cnt":1,"list":[
+  {
+  "dt":1606240800,
+  "main":  {"temp":-2.03,"feels_like":-6.07,"temp_min":-6.82,"temp_max":-2.03,"pressure":1018,"sea_level":1018,"grnd_level":820,"humidity":87,"temp_kf":4.79},
+  "weather":[{"id":600,"main":"Snow","description":"light snow","icon":"13d"}],
+  "clouds":{"all":87},
+  "wind":{"speed":2.21,"deg":131},
+  "visibility":2874,
+  "pop":0.2,
+  "snow":{"3h":0.11},
+  "sys":{"pod":"d"},
+  "dt_txt":"2020-11-24 18:00:00"
+  }
+],
+
+"city":{"id":6136777,"name":"Rutland","coord":{"lat":49.72,"lon":-118.93},"country":"CA","population":0,"timezone":-28800,"sunrise":1606231359,"sunset":1606262578}}
