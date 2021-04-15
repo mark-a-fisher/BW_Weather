@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/MeloMark89/BW_Weather/main/App%20Icon.png" width="200" height="200" />
+
 # BW_Weather
 Android application displaying weather forecast and webcam images for Big White Ski Resort, Canada.
 
