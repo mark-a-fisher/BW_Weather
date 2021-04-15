@@ -131,7 +131,7 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
                                 // Add Weather object to array
                                 weatherList.add(newWeather);
                                 // Un-comment following line to display the data contained in each newly created Weather object in console
-                                // newWeather.displayData();
+                                // System.out.println(newWeather.toString());
 
                             } // If no snow forecast manually set snow amount to zero
                             catch (Exception e) {
@@ -140,7 +140,7 @@ public class FiveDayWeatherActivity extends AppCompatActivity {
                                 Weather newWeather = new Weather(date, time, weather_type, (int) average_temp, snow_amount);
                                 weatherList.add(newWeather);
                                 // Un-comment following line to display the data contained in each newly created Weather object in console
-                                // newWeather.displayData();
+                                // System.out.println(newWeather.toString());
                             }
                         }
                         catch (JSONException e) { Log.e("mark_debug", "Could not parse JSON list"); }
