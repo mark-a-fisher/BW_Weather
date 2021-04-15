@@ -21,6 +21,15 @@ public class Weather {
     public String getTime() { return time; }
     public String getWeather_type() { return weather_type; }
     public int getAverage_temperature() { return average_temperature; }
-    public float getSnow_amount() { return snow_amount;
+    public float getSnow_amount() { return snow_amount; }
+
+    // Method to output data contained in Weather object
+    public void displayData(){
+        System.out.println("Weather object contains: " + "\n" +
+                           "Date: " + date + "\n" +
+                           "Time: " + time + "\n" +
+                           "Weather type: " + weather_type + "\n" +
+                           "Average temp: " + average_temperature + "\n" +
+                           "Snow amount: " + snow_amount);
     }
 }

@@ -132,14 +132,21 @@ public class TodayWeather extends AppCompatActivity {
                                 JSONObject snow = item.getJSONObject("snow");
                                 String snow_amount = snow.getString("3h");
                                 float snow_amount_float = Float.parseFloat(snow_amount);
-                                // Add new Weather data to array
-                                weatherListToday.add(new Weather(date, time, weather_type, (int) average_temp, snow_amount_float));
+                                // Create new Weather object with new data from JSON
+                                Weather newWeather = new Weather(date, time, weather_type, (int) average_temp, snow_amount_float);
+                                // Add Weather object to array
+                                weatherListToday.add(newWeather);
+                                // Un-comment following line to display the data contained in each newly created Weather object in console
+                                // newWeather.displayData();
 
-                            } // If no snow
+                            } // If no snow in forecast manually set snow to zero
                             catch (Exception e) {
                                 float snow_amount = 0;
-                                // Add new Weather data to array
-                                weatherListToday.add(new Weather(date, time, weather_type, (int) average_temp, snow_amount));
+                                // Create new Weather object with new data from JSON
+                                Weather newWeather = new Weather(date, time, weather_type, (int) average_temp, snow_amount);
+                                weatherListToday.add(newWeather);
+                                // Un-comment following line to display the data contained in each newly created Weather object in console
+                                // newWeather.displayData();
                             }
                         }
                         catch (JSONException e) { Log.e("mark_debug", "Could not parse JSON list"); }
