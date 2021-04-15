@@ -10,6 +10,9 @@ Functionality:
 - 5 day weather forecast.
 - Image feed from the webcams at Big White Ski Resort.
  
+ **Home Screen**
+ 
+ ![image](https://user-images.githubusercontent.com/65376138/114907725-37cef300-9dd0-11eb-81a7-ddd506660b71.png)
 
 Code by Mark Fisher: mafisher888@gmail.com ||
 Artwork by Franziska Miller: [Instagram](https://www.instagram.com/frangipani.arts/) frangipani.arts
