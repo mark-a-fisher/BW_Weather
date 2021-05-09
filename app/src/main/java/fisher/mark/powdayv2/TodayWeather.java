@@ -27,6 +27,7 @@ import java.util.List;
 
 public class TodayWeather extends AppCompatActivity {
 
+    // Testing Git on new PC
     // Setup TextViews
     private TextView textview_1;
     private TextView textview_2;
