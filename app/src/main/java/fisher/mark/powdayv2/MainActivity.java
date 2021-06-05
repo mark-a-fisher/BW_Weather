@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView five_day_button;
     ImageView webcam_button;
 
+    // Testing GitHub desktop
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
